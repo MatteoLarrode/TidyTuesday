@@ -111,7 +111,7 @@ ggplotify::as.ggplot(cowplot::ggdraw(chord))+
         plot.caption=element_text(size=10, hjust=0.95, margin=margin(b=12)),
         plot.margin=margin(t=20))
 
-ggsave("erasmus.jpeg", height=9, width=9)
+ggsave("erasmus_spiderweb.jpeg", height=9, width=9)
 
 
 
