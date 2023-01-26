@@ -112,7 +112,3 @@ ggplotify::as.ggplot(cowplot::ggdraw(chord))+
         plot.margin=margin(t=20))
 
 ggsave("erasmus_spiderweb.jpeg", height=9, width=9)
-
-
-
-
