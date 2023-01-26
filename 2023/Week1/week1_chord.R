@@ -12,6 +12,7 @@ library("countrycode") #convert country code to name
 library("circlize") #draw chord diagram
 library("ggplotify") #convert basic plot to ggplot
 library("cowplot") #help with ggplot
+library("extrafont")
 
 # load dataset ------------------------------------------------------------
 
@@ -96,15 +97,19 @@ chordDiagram(final_data_intersect,
 #convert to ggplot object to add ggplot layers 
 chord <- recordPlot()
 
+font_import()
+loadfonts()
+
+
 ggplotify::as.ggplot(cowplot::ggdraw(chord))+
-  labs(title="ERASMUS STUDENT MOBILITY",
-       subtitle="Graphic depicts movement of participants between top participating countries from 2014 to 2020",
-       caption="Data from Data.Europa | Chart by @tanya_shapiro")+
-  theme(text=element_text(family="Times New Roman"),
-        plot.title=element_text(hjust=0.5, face="bold", size=18),
-        plot.subtitle=element_text(hjust=0.5, size=12, margin=margin(t=10)),
+  labs(title="The Erasmus Spiderweb",
+       subtitle="Mobility of students participating in the Erasmus programme among top participating countries (2014-2020)",
+       caption="Data from Data.Europa.eu | Chart by @matteoStats")+
+  theme(text=element_text(family="Helvetica"),
+        plot.title=element_text(hjust=0.5, face="bold", size=20),
+        plot.subtitle=element_text(hjust=0.5, size=12, margin=margin(t=15), face="italic"),
         plot.caption=element_text(size=10, hjust=0.95, margin=margin(b=12)),
-        plot.margin   =margin(t=20))
+        plot.margin=margin(t=20))
 
 ggsave("erasmus.jpeg", height=9, width=9)
 

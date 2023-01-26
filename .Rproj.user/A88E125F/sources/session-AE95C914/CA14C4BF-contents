@@ -104,14 +104,14 @@ loadfonts()
 ggplotify::as.ggplot(cowplot::ggdraw(chord))+
   labs(title="The Erasmus Spiderweb",
        subtitle="Mobility of students participating in the Erasmus programme among top participating countries (2014-2020)",
-       caption="Data from Data.Europa | Chart by @tanya_shapiro")+
+       caption="Data from Data.Europa.eu | Chart by @matteoStats")+
   theme(text=element_text(family="Helvetica"),
-        plot.title=element_text(hjust=0.5, face="bold", size=18),
-        plot.subtitle=element_text(hjust=0.5, size=12, margin=margin(t=10)),
+        plot.title=element_text(hjust=0.5, face="bold", size=20),
+        plot.subtitle=element_text(hjust=0.5, size=12, margin=margin(t=15), face="italic"),
         plot.caption=element_text(size=10, hjust=0.95, margin=margin(b=12)),
-        plot.margin   =margin(t=20))
+        plot.margin=margin(t=20))
 
-ggsave("erasmus.jpeg", height=9, width=9)
+ggsave("erasmus_spiderweb.jpeg", height=9, width=9)
 
 
 
