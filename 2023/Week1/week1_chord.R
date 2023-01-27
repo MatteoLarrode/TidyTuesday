@@ -13,6 +13,8 @@ library("circlize") #draw chord diagram
 library("ggplotify") #convert basic plot to ggplot
 library("cowplot") #help with ggplot
 library("extrafont")
+#font_import()
+#loadfonts()
 library("chorddiag") #devtools::install_github("mattflor/chorddiag")
 library("igraph") #convert data into adjacency matrix
 library("tidygraph")
@@ -92,17 +94,12 @@ grid.col = c(France = "#318CE7", Italy = "#90be6d", Lithuania = "#4d908e",
              Belgium = "#000000", Czechia = "#B33F62", Germany = "#c1121f", 
              Spain = "#F9564F")
 
-
 chordDiagram(final_data_intersect, 
              grid.col = grid.col, 
              transparency = 0.4)
 
 #convert to ggplot object to add ggplot layers 
 chord <- recordPlot()
-
-font_import()
-loadfonts()
-
 
 ggplotify::as.ggplot(cowplot::ggdraw(chord))+
   labs(title="The Erasmus Spiderweb",
@@ -117,14 +114,38 @@ ggplotify::as.ggplot(cowplot::ggdraw(chord))+
 ggsave("erasmus_spiderweb.jpeg", height=9, width=9)
 
 
-
-#for interactive version: only keep flows above a threshold
+#simplify plot: only keep flows above a threshold
 final_data_intersect_filter <- final_data_intersect %>% 
-  filter(flow>=60)
+  filter(flow>=100)%>% 
+  #back to UK to avoid overlap
+  mutate(sending_country = replace(sending_country, sending_country=="United Kingdom","UK"),
+        receiving_country = replace(receiving_country, receiving_country=="nited Kingdom","UK"))
+
+
+chordDiagram(final_data_intersect_filter, 
+             grid.col = grid.col, 
+             transparency = 0.4)
+chord <- recordPlot()
+
+
+ggplotify::as.ggplot(cowplot::ggdraw(chord))+
+  labs(title="The Erasmus Spiderweb",
+       subtitle="Mobility of students participating in the Erasmus programme among top participating countries (2014-2020)*\n\n*only considering flows of > 100 students total",
+       caption="Data from Data.Europa.eu | Chart by @matteoStats")+
+  theme(text=element_text(family="Helvetica"),
+        plot.title=element_text(hjust=0.5, face="bold", size=20),
+        plot.subtitle=element_text(hjust=0.5, size=12, margin=margin(t=15), face="italic"),
+        plot.caption=element_text(size=10, hjust=0.95, margin=margin(b=12)),
+        plot.margin=margin(t=20))
+
+ggsave("erasmus_spiderweb_simple.jpeg", height=9, width=9)
+
+
+
+# interactive plot ----------------------------------------------------------
 
 #turn df into square matrix
 final_matrix <- as.matrix(as_adjacency_matrix(as_tbl_graph(final_data_intersect_filter), attr = "flow"))
-
 
 #create the vector of colors
 groupColors = c("#4d908e", "#B33F62", "#577590",
