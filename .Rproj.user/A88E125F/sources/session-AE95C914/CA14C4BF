@@ -3,7 +3,7 @@
     "path": "~/Desktop/Data Science/TidyTuesday/2023/Week1/week1_chord.R",
     "project_path": "2023/Week1/week1_chord.R",
     "type": "r_source",
-    "hash": "4264236471",
+    "hash": "2299733206",
     "contents": "",
     "dirty": false,
     "created": 1674363099686.0,
@@ -12,17 +12,17 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "113,51",
-        "scrollLine": "91",
+        "cursorPosition": "125,0",
+        "scrollLine": "104",
         "docOutlineVisible": "0",
         "ignored_words": "countrycode\n"
     },
     "folds": "",
-    "lastKnownWriteTime": 1674772659,
+    "lastKnownWriteTime": 1674791519,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1674772659522,
+    "last_content_update": 1674791519769,
     "read_only": false,
     "read_only_alternatives": []
 }

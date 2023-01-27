@@ -13,6 +13,9 @@ library("circlize") #draw chord diagram
 library("ggplotify") #convert basic plot to ggplot
 library("cowplot") #help with ggplot
 library("extrafont")
+library("chorddiag") #devtools::install_github("mattflor/chorddiag")
+library("igraph") #convert data into adjacency matrix
+library("tidygraph")
 
 # load dataset ------------------------------------------------------------
 
@@ -112,3 +115,12 @@ ggplotify::as.ggplot(cowplot::ggdraw(chord))+
         plot.margin=margin(t=20))
 
 ggsave("erasmus_spiderweb.jpeg", height=9, width=9)
+
+
+
+#turn df into square matrix
+final_matrix <- as.matrix(as_adjacency_matrix(as_tbl_graph(final_data_intersect), attr = "flow"))
+
+#interactive plot with chorddiag library
+chord_interactive <- chorddiag(final_matrix, groupColors = grid.col)
+
