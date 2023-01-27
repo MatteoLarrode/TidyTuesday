@@ -20,7 +20,7 @@ Bring your own data from 2022!
 
 | Week | Date | Data | Source | Article
 | :---: | :---: | :--- | :--- | :---|
-| 10 | `2022-03-08` | [Erasmus student mobility](https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-03-08) | [Data.Europa.eu](https://data.europa.eu/data/datasets/erasmus-mobility-statistics-2014-2019-v2?locale=en) | [Wimdu.co](https://www.wimdu.co.uk/blog/discover-popular-erasmus-destinations) |
+| 1 | `2022-01-03` | [Erasmus student mobility](https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-03-08) | [Data.Europa.eu](https://data.europa.eu/data/datasets/erasmus-mobility-statistics-2014-2019-v2?locale=en) | [Wimdu.co](https://www.wimdu.co.uk/blog/discover-popular-erasmus-destinations) |
 
 
 ### [Week 2](https://github.com/MatteoLarrode/TidyTuesday/blob/main/2023/Week2/) 🐦 FeederWatch
