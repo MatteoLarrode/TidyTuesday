@@ -116,10 +116,10 @@ ggsave("erasmus_spiderweb.jpeg", height=9, width=9)
 
 #simplify plot: only keep flows above a threshold
 final_data_intersect_filter <- final_data_intersect %>% 
-  filter(flow>=100)%>% 
+  filter(flow>=90)%>% 
   #back to UK to avoid overlap
   mutate(sending_country = replace(sending_country, sending_country=="United Kingdom","UK"),
-        receiving_country = replace(receiving_country, receiving_country=="nited Kingdom","UK"))
+        receiving_country = replace(receiving_country, receiving_country=="United Kingdom","UK"))
 
 
 chordDiagram(final_data_intersect_filter, 
@@ -130,7 +130,7 @@ chord <- recordPlot()
 
 ggplotify::as.ggplot(cowplot::ggdraw(chord))+
   labs(title="The Erasmus Spiderweb",
-       subtitle="Mobility of students participating in the Erasmus programme among top participating countries (2014-2020)*\n\n*only considering flows of > 100 students total",
+       subtitle="Mobility of students participating in the Erasmus programme among top participating countries (2014-2020)*\n\n*only considering flows of >90 students total",
        caption="Data from Data.Europa.eu | Chart by @matteoStats")+
   theme(text=element_text(family="Helvetica"),
         plot.title=element_text(hjust=0.5, face="bold", size=20),
@@ -139,7 +139,6 @@ ggplotify::as.ggplot(cowplot::ggdraw(chord))+
         plot.margin=margin(t=20))
 
 ggsave("erasmus_spiderweb_simple.jpeg", height=9, width=9)
-
 
 
 # interactive plot ----------------------------------------------------------

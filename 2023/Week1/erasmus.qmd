@@ -1,0 +1,30 @@
+---
+title: "Week 1 - Erasmus Spiderweb"
+author: "Matteo Larrode"
+format: gfm
+editor: visual
+---
+
+![Erasmus](erasmus_spiderweb_simple.jpeg)
+
+# Data Wrangling
+
+```{r echo=FALSE, output= FALSE}
+library("tidyverse")
+library("tidytuesdayR") #get data
+library("countrycode") #convert country code to name
+library("circlize") #draw chord diagram
+library("ggplotify") #convert basic plot to ggplot
+library("cowplot") #help with ggplot
+library("chorddiag") #devtools::install_github("mattflor/chorddiag")
+library("igraph") #convert data into adjacency matrix
+library("tidygraph")
+```
+
+Let's first load the data and extract the dataset
+```{r output = FALSE}
+data <- tidytuesdayR::tt_load('2022-03-08')
+erasmus_raw <- data$erasmus
+```
+
+
