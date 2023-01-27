@@ -118,9 +118,22 @@ ggsave("erasmus_spiderweb.jpeg", height=9, width=9)
 
 
 
+#for interactive version: only keep flows above a threshold
+final_data_intersect_filter <- final_data_intersect %>% 
+  filter(flow>=60)
+
 #turn df into square matrix
-final_matrix <- as.matrix(as_adjacency_matrix(as_tbl_graph(final_data_intersect), attr = "flow"))
+final_matrix <- as.matrix(as_adjacency_matrix(as_tbl_graph(final_data_intersect_filter), attr = "flow"))
+
+
+#create the vector of colors
+groupColors = c("#4d908e", "#B33F62", "#577590",
+              "#F5EDED","#000000", "#318CE7", 
+              "#F3C677", "#7B1E7A","#c1121f",
+              "#B33F62", "#F9564F", "#90be6d",
+              "#f4f3ee")
 
 #interactive plot with chorddiag library
-chord_interactive <- chorddiag(final_matrix, groupColors = grid.col)
+chord_interactive <- chorddiag(final_matrix)
+chord_interactive
 
