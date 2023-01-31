@@ -113,4 +113,4 @@ animate(sparrow_plot,
         duration = 17, # = 365 days/yr x 4 years x 0.02 sec/day = 25 seconds
         height = 800, width = 800)
 
-anim_save("feederwatch.gif")
+anim_save("2023/Week2/feederwatch.gif")
