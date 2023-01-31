@@ -11,7 +11,6 @@ library("tidytuesdayR") #get data
 library("lubridate") #make_date()
 library("ggplot2")
 library("gganimate")
-library("sf")
 library("usmap")
 
 #borders of US for mapping
@@ -56,20 +55,23 @@ feederwatch_sparrows <- bind_rows(feederwatch_16_20_sparrows,feederwatch_20_21_s
 
 #create new csv for future use 
 write_csv(feederwatch_sparrows, "feederwatch_sparrows.csv")
-feederwatch_sparrows <- read_csv("feederwatch_sparrows.csv")
+feederwatch_sparrows <- read_csv("2023/Week2/feederwatch_sparrows.csv")
 
 #create date with month & year variables & filter nonsensical lat and longitude
+#check lat & long
+  #mainland boundaries: 50°N, 20°N // 130°W, 75°W
+  #Alaska boundaries: 72°N, 54°N // 174°W, 126°W
 feederwatch_sparrows <- feederwatch_sparrows %>%
-  mutate(obs_date = make_date(Year, Month)) 
+  mutate(obs_date = make_date(Year, Month))  %>%
+  filter((latitude < 50 & latitude > 20 & longitude > -130 & longitude < -75) |
+           (latitude < 72 & latitude > 54 & longitude > -174 & longitude < -126) )
 
-#TO DO -> check lat & long
 
 #set coordinate system that fits usmap
 feederwatch_sparrows <- usmap_transform(
   feederwatch_sparrows,
   input_names = c("longitude", "latitude"),
-  output_names = c("x", "y")
-)
+  output_names = c("x", "y"))
 
 
 # visualization ----------------------------------------------------------
@@ -79,14 +81,15 @@ sparrow_plot <- us_map +
   geom_point(data = feederwatch_sparrows, 
              aes(x=x, y=y, 
              col = species_code, 
-             size = how_many))
-
+             size = how_many))+
+  transition_time(obs_date) +
+  labs(title = "Year: {frame_time}")
 
 
 sparrow_plot
 
 
 #animate map with sightings for those birds (gganimate)
-
+animate(sparrow_plot, height = 800, width =800)
 
 
