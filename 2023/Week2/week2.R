@@ -9,8 +9,11 @@
 library("tidyverse")
 library("tidytuesdayR") #get data
 library("lubridate") #make_date()
+library("zoo") #as.yearmon() for Year-Month format
 library("ggplot2")
 library("gganimate")
+library('gifski')
+library('png')
 library("usmap")
 
 #borders of US for mapping
@@ -62,7 +65,7 @@ feederwatch_sparrows <- read_csv("2023/Week2/feederwatch_sparrows.csv")
   #mainland boundaries: 50°N, 20°N // 130°W, 75°W
   #Alaska boundaries: 72°N, 54°N // 174°W, 126°W
 feederwatch_sparrows <- feederwatch_sparrows %>%
-  mutate(obs_date = make_date(Year, Month))  %>%
+  mutate(obs_date = make_date(Year, Month, Day))%>%
   filter((latitude < 50 & latitude > 20 & longitude > -130 & longitude < -75) |
            (latitude < 72 & latitude > 54 & longitude > -174 & longitude < -126) )
 
@@ -83,13 +86,12 @@ sparrow_plot <- us_map +
              col = species_code, 
              size = how_many))+
   transition_time(obs_date) +
-  labs(title = "Year: {frame_time}")
-
-
-sparrow_plot
+  labs(title = "Month: {as.yearmon(frame_time)}")+
+  shadow_wake(wake_length = 0.3, alpha = FALSE)
 
 
 #animate map with sightings for those birds (gganimate)
 animate(sparrow_plot, height = 800, width =800)
 
+anim_save("feederwatch.gif")
 
