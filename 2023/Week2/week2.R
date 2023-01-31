@@ -65,6 +65,7 @@ feederwatch_sparrows <- read_csv("2023/Week2/feederwatch_sparrows.csv")
   #mainland boundaries: 50°N, 20°N // 130°W, 75°W
   #Alaska boundaries: 72°N, 54°N // 174°W, 126°W
 feederwatch_sparrows <- feederwatch_sparrows %>%
+  filter(Year < 2019) %>%
   mutate(obs_date = make_date(Year, Month, Day))%>%
   filter((latitude < 50 & latitude > 20 & longitude > -130 & longitude < -75) |
            (latitude < 72 & latitude > 54 & longitude > -174 & longitude < -126) )
@@ -85,13 +86,31 @@ sparrow_plot <- us_map +
              aes(x=x, y=y, 
              col = species_code, 
              size = how_many))+
-  transition_time(obs_date) +
-  labs(title = "Month: {as.yearmon(frame_time)}")+
-  shadow_wake(wake_length = 0.3, alpha = FALSE)
+  transition_time(obs_date) + #for animation
+  shadow_wake(wake_length = 0.1)+
+  theme(text=element_text(family="Helvetica"),
+        plot.title=element_text(hjust=0.5, face="bold", size=20),
+        plot.subtitle=element_text(hjust=0.5, size=16, margin=margin(t=15), face="italic"),
+        plot.caption=element_text(hjust=0.95, size=12, margin=margin(b=12)),
+        plot.margin = margin(t= 5,
+                             r = 40,
+                             b = 10, 
+                             l= 40),
+        legend.title = element_blank(),
+        legend.text = element_text(size=13),
+        legend.position = "left")+
+  labs(title = "Observations of Migratory Birds on Feederwatch",
+    subtitle = "Month: {as.yearmon(frame_time)}",
+    caption="Data from feederwatch.org | Chart by @matteoStats")+
+  scale_color_discrete(labels = c("Field Sparrow", 
+                                  "Fox Sparrow", 
+                                  "Golden-crowned Sparrow"))
+  
 
 
-#animate map with sightings for those birds (gganimate)
-animate(sparrow_plot, height = 800, width =800)
+#animate map (gganimate)
+animate(sparrow_plot, 
+        duration = 17, # = 365 days/yr x 4 years x 0.02 sec/day = 25 seconds
+        height = 800, width = 800)
 
 anim_save("feederwatch.gif")
-
