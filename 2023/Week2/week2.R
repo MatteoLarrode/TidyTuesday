@@ -21,7 +21,7 @@ us <- rgeoboundaries::gb_adm1("usa") %>%
   st_crop(xmin = -125, xmax = -67, ymin = 23, ymax = 52) 
 
 
-# data wrangling ----------------------------------------------------------
+# pre-cleaning ----------------------------------------------------------
 
 #load data
 feederwatch_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-01-10/PFW_2021_public.csv')
@@ -58,6 +58,10 @@ feederwatch_sparrows <- bind_rows(feederwatch_16_20_sparrows,feederwatch_20_21_s
 
 #create new csv for future use 
 write_csv(feederwatch_sparrows, "feederwatch_sparrows.csv")
+
+
+
+# data wrangling ----------------------------------------------------------
 feederwatch_sparrows <- read_csv("2023/Week2/feederwatch_sparrows.csv")
 
 #create date with month & year variables & filter nonsensical lat and longitude
@@ -88,17 +92,19 @@ sparrow_plot <- us_map +
              size = how_many))+
   transition_time(obs_date) + #for animation
   shadow_wake(wake_length = 0.1)+
-  theme(text=element_text(family="Helvetica"),
-        plot.title=element_text(hjust=0.5, face="bold", size=20),
-        plot.subtitle=element_text(hjust=0.5, size=16, margin=margin(t=15), face="italic"),
-        plot.caption=element_text(hjust=0.95, size=12, margin=margin(b=12)),
-        plot.margin = margin(t= 5,
-                             r = 40,
+  theme(text=element_text(family="Helvetica", color = "white"),
+        plot.title=element_text(hjust=0.5, face="bold", size=25, margin=margin(t=15)),
+        plot.subtitle=element_text(hjust=0.5, size=19, margin=margin(t=15), face="italic"),
+        plot.caption=element_text(hjust=0.95, size=13, margin=margin(b=12)),
+        plot.margin = margin(r = 40,
                              b = 10, 
                              l= 40),
+        plot.background = element_rect(fill = "#1a4169", color = NA),
         legend.title = element_blank(),
         legend.text = element_text(size=13),
-        legend.position = "left")+
+        legend.background=element_blank(),
+        legend.key=element_blank(),
+        legend.position = "bottom")+
   labs(title = "Observations of Migratory Birds on Feederwatch",
     subtitle = "Month: {as.yearmon(frame_time)}",
     caption="Data from feederwatch.org | Chart by @matteoStats")+
