@@ -30,7 +30,7 @@ Bring your own data from 2022!
 
 | Week | Date | Data | Source | Article
 | :---: | :---: | :--- | :--- | :---|
- 2 | `2023-01-10` | [Bird FeederWatch data](https://github.com/rfordatascience/tidytuesday/tree/master/data/2023/2023-01-10) | [FeederWatch](https://feederwatch.org/explore/raw-dataset-requests/) | [A Citizen Science Data Report for Project FeederWatch](https://www.frontiersin.org/articles/10.3389/fevo.2021.619682/full) |
+ 2 | `2023-01-10` | [Bird FeederWatch data](https://github.com/rfordatascience/tidytuesday/tree/master/data/2023/2023-01-10) | [FeederWatch](https://feederwatch.org/explore/raw-dataset-requests/) | [Citizen Data Report Project FeederWatch](https://www.frontiersin.org/articles/10.3389/fevo.2021.619682/full) |
  
 
 ![GIF map](https://github.com/MatteoLarrode/TidyTuesday/blob/main/2023/Week2/feederwatch.gif)
