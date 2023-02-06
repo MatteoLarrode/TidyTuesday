@@ -50,7 +50,7 @@ Bring your own data from 2022!
 
 | Week | Date | Data | Source | Article
 | :---: | :---: | :--- | :--- | :---|
-| 4 | `2023-01-24` | [Alone data](2023-01-24/readme.md) | [Alone data package](https://github.com/doehm/alone) | [Alone R package: Datasets from the survival TV series](https://gradientdescending.com/alone-r-package-datasets-from-the-survival-tv-series/) |
+| 4 | `2023-01-24` | [Alone data](2023-01-24/readme.md) | [Alone data package](https://github.com/doehm/alone) | [Datasets from the survival TV series](https://gradientdescending.com/alone-r-package-datasets-from-the-survival-tv-series/) |
 
 
 ### [Week 5](https://github.com/MatteoLarrode/TidyTuesday/blob/main/2023/Week5/) 🐱 Pet Cats UK
