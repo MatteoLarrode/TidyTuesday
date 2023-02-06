@@ -104,7 +104,7 @@ sparrow_plot <- us_map +
         legend.text = element_text(size=13),
         legend.background=element_blank(),
         legend.key=element_blank(),
-        legend.position = "bottom")+
+        legend.position = c(.75, .75))+
   labs(title = "Observations of Migratory Birds on Feederwatch",
     subtitle = "Month: {as.yearmon(frame_time)}",
     caption="Data from feederwatch.org | Chart by @matteoStats")+
