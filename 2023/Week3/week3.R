@@ -19,7 +19,6 @@ tuesdata <- tidytuesdayR::tt_load('2023-01-17')
 arthistory <- tuesdata$artists
 
 selected_years <- c("1926", "1936", "1948", "1959", "1970", "1975", "1991", "1995", "2005", "2009", "2013", "2020")
-breaks <- c("2020", "2009", "1995", "1975", "1959","1926")
 
 # data wrangling ----------------------------------------------------------
 
@@ -40,21 +39,19 @@ arthistory_final <- arthistory_df %>%
 
 # visualization----------------------------------------------------------
 
-#1) Gender representation as page ratio ------
+#1) Representation as page ratio ------
 
   #!! density grouped by gender so does NOT show differences in total representations genders
 
 ridge_plot <- ggplot(arthistory_final, 
                      aes(y = yearFct))+
-  scale_y_discrete(breaks = breaks)+
+  scale_y_discrete(breaks = selected_years)+
   geom_density_ridges(aes(x = space_ratio_per_page_total,
                           fill = genderFct), # fill created later
-                      rel_min_height = 0.07,
+                      rel_min_height = 0.05,
                       alpha = .7,
                       color = "white",
                       scale = 2,
-                      quantile_lines = TRUE, 
-                      quantiles = 2,
                       from = 0, to = 1)+
   scale_fill_cyclical(
     breaks = c("Male", "Female"),
@@ -67,26 +64,17 @@ ridge_plot <- ggplot(arthistory_final,
        subtitle = "Differences in space taken by artists on the pages of Janson’s History of Art and Gardner’s Art Through the Ages",
        caption = "Matteo Larrode (@matteoStats) | Source: Lemus S, Stam H (2022). arthistory: Art History Textbook Data")+
   theme_ridges(grid = FALSE, center_axis_labels = TRUE)+
-  theme(text=element_text(family="Helvetica"),
-        plot.margin = margin(l = 30, t = 15, b = 15),
-        plot.title=element_text(hjust=0.5, face="bold", size=17),
-        plot.subtitle=element_text(hjust=0.5, size=13, margin=margin(t=15, b = 15), face="italic"),
-        plot.caption=element_text(hjust=1, size=10, margin=margin(t = 30, b=15)))
+  theme(text=element_text(family="Roboto", color = "#22211d"),
+        plot.background = element_rect(fill = "#f5f5f2", color = NA),
+        panel.background = element_rect(fill = "#f5f5f2", color = NA), 
+        legend.background = element_rect(fill = "#f5f5f2", color = NA),
+        plot.margin = margin(l = 30, t = 15, b = 15, r = 15),
+        plot.title=element_text(hjust=0.5, face="bold", size=17,  color = "#4e4d47"),
+        plot.subtitle=element_text(hjust=0.5, size=13, margin=margin(t=12, b = 15), color = "#4e4d47"),
+        plot.caption=element_text(hjust=0.9, size=9, margin=margin(t = 30, b=15), color = "#4e4d47"),
+        legend.key.height= unit(0.5, 'cm'),
+        legend.key.width= unit(0.5, 'cm'),
+        legend.position = c(0.9, 0.5))
 
 
 ridge_plot
-
-
-#2) Total representation ------
-
-#INTERSECTIONAL ANALYSIS
-  #most viz focus on either gender or ethnicity
-  #consider both as interrelated
-
-#choice:
-  #total appearances in both textbooks (or either)
-  #total exhibitions in Moma and / or Whitney
-
-
-
-
