@@ -43,6 +43,7 @@ Bring your own data from 2022!
 | :---: | :---: | :--- | :--- | :---|
 | 3 | `2023-01-17` | [Art history data](https://github.com/rfordatascience/tidytuesday/tree/master/data/2023/2023-01-17) | [arthistory data package](https://saralemus7.github.io/arthistory/) | [Quantifying Art Historical Narratives](https://github.com/hollandstam1/thesis/blob/main/_book/Quantifying-Art-Historical-Narratives.pdf) |
 
+![Art History](2023/Week3/gender_page_ratio.png)
 
 
 ### [Week 4](https://github.com/MatteoLarrode/TidyTuesday/blob/main/2023/Week4/) 🐺 ALONE
