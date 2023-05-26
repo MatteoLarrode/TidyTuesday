@@ -76,7 +76,7 @@ ridge_plot <- ggplot(arthistory_final,
         legend.key.width= unit(1, 'cm'),
         legend.position = c(0.87, 0.5),
         legend.text = element_text(size = 13),
-        axis.text.y = element_text(hjust = 1))
+        axis.text.y = element_text(size = 13))
 
 
 ridge_plot
